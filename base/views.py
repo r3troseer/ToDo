@@ -1,5 +1,7 @@
 from asyncio import tasks
 from email import message
+from re import T
+from urllib import request
 from django.contrib import messages
 from multiprocessing import context
 from django.shortcuts import render, redirect
@@ -19,6 +21,14 @@ def detail(request, pk, slug):
     task = Task.objects.get(id=pk, slug=slug)
     context = {"task": task}
     return render(request, "details.html", context)
+
+
+def dashboard(request):
+    return request
+
+
+def createTask(request):
+    return render(request)
 
 
 def deleteTask(request, pk):
