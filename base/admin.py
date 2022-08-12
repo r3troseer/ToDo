@@ -1,9 +1,9 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Task, Priority, Tag, Reapeat
+from .models import Task, Priority, Tag, Repeat
 
 admin.site.register(Task)
 admin.site.register(Priority)
 admin.site.register(Tag)
-admin.site.register(Reapeat)
+admin.site.register(Repeat)

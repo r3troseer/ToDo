@@ -1,12 +1,8 @@
-from asyncio import tasks
-from email import message
-from re import T
-from urllib import request
 from django.contrib import messages
-from multiprocessing import context
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Priority, Task
+from .forms import TaskForm
 
 # Create your views here.
 
@@ -24,11 +20,36 @@ def detail(request, pk, slug):
 
 
 def dashboard(request):
-    return request
+    return render(request)
 
 
 def createTask(request):
-    return render(request)
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.save()
+
+            return redirect("home")
+    else:
+        form = TaskForm
+
+    context = {"form": form}
+    return render(request, "create.html", context)
+
+
+def updateTask(request, pk):
+    task = get_object_or_404(Task, id=pk)
+    if request.method == "POST":
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = TaskForm(instance=task)
+    
+    context = {"form": form}
+    return render(request, "create.html", context)
 
 
 def deleteTask(request, pk):

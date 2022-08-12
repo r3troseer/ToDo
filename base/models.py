@@ -1,5 +1,3 @@
-from timeit import repeat
-from unicodedata import name
 from django.db import models
 from autoslug import AutoSlugField
 
@@ -13,7 +11,7 @@ class Priority(models.Model):
         return self.name
 
 
-class Reapeat(models.Model):
+class Repeat(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -34,7 +32,7 @@ class Task(models.Model):
     due_date = models.DateField
     due_time = models.TimeField
     priority = models.ForeignKey(Priority, on_delete=models.SET_NULL, null=True)
-    repeat = models.ForeignKey(Reapeat, on_delete=models.SET_NULL, null=True)
+    repeat = models.ForeignKey(Repeat, on_delete=models.SET_NULL, null=True)
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):

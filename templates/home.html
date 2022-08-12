@@ -5,12 +5,15 @@
     {%endfor%}
 </ul>
 {%endif%}
-
+<a href="{% url 'create' %}">create</a>
 {% for task in tasks %}
 
+
 <ul>
-    <li><a href=" {% url 'detail' task.id task.slug %} ">{{task.name}}</a>, {{task.priority}} <a
-            href="{% url 'delete' task.id %}">del</a> </li>
+    <li><a href=" {% url 'detail' task.id task.slug %} ">{{task.name}}</a>, {{task.priority}}
+        <a href="{% url 'update' task.id %}">update</a>
+        <a href="{% url 'delete' task.id %}">del</a>
+    </li>
 </ul>
 
 {%endfor%}
