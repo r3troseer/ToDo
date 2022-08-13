@@ -7,22 +7,26 @@ from .forms import TaskForm
 # Create your views here.
 
 
+# view function form the homepage where all tasks are viewed
 def home(request):
     tasks = Task.objects.all
     context = {"tasks": tasks}
     return render(request, "home.html", context)
 
 
+# view function to view more details about selected task
 def detail(request, pk, slug):
     task = Task.objects.get(id=pk, slug=slug)
     context = {"task": task}
     return render(request, "details.html", context)
 
 
+# view function to show data of finished and un finshed task in graph
 def dashboard(request):
     return render(request)
 
 
+# view function to create task
 def createTask(request):
     if request.method == "POST":
         form = TaskForm(request.POST)
@@ -38,20 +42,22 @@ def createTask(request):
     return render(request, "create.html", context)
 
 
+# view function to edit tasks
 def updateTask(request, pk):
     task = get_object_or_404(Task, id=pk)
     if request.method == "POST":
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect("home")
     else:
         form = TaskForm(instance=task)
-    
+
     context = {"form": form}
     return render(request, "create.html", context)
 
 
+# view function to delete tasks
 def deleteTask(request, pk):
     task = Task.objects.get(id=pk)
 
