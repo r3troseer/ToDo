@@ -1,19 +1,27 @@
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {%endfor%}
-</ul>
-{%endif%}
-<a href="{% url 'create' %}">create</a>
-{% for task in tasks %}
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'message.html' %}
 
 
-<ul>
-    <li><a href=" {% url 'detail' task.id task.slug %} ">{{task.name}}</a>, {{task.priority}}
-        <a href="{% url 'update' task.id %}">update</a>
-        <a href="{% url 'delete' task.id %}">del</a>
-    </li>
-</ul>
 
-{%endfor%}
+<div class="container d-flex justify-content-center vh-100 align-items-center vw-75">
+    <div class="card">
+        <div class="card-body">
+            <a href="{% url 'create' %}">create</a>
+            {% for task in tasks %}
+            <ul class="list-group">
+                <li class="list-group-item mb-2 rounded">
+                    <a href=" {% url 'detail' task.id task.slug %} ">{{task.name}}</a>, {{task.priority}}
+                    <a href="{% url 'update' task.id %}">update</a>
+                    <a href="{% url 'delete' task.id %}">del</a>
+                </li>
+            </ul>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+
+</section>
+
+{% endblock %}

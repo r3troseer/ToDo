@@ -50,8 +50,10 @@ def updateTask(request, pk):
         if form.is_valid():
             form.save()
             return redirect("home")
+        
     else:
         form = TaskForm(instance=task)
+    # messages.success(request, "task created")
 
     context = {"form": form}
     return render(request, "create.html", context)
@@ -64,7 +66,7 @@ def deleteTask(request, pk):
     if request.method == "POST":
         task.delete()
         return redirect("home")
-    messages.info(request, "task deleted")
+    messages.success(request, "task deleted")
 
     context = {"task": task}
     return render(request, "delete.html", context)

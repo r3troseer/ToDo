@@ -1,8 +1,6 @@
 from django.db import models
 from autoslug import AutoSlugField
 
-# Create your models here.
-
 
 class Priority(models.Model):
     name = models.CharField(max_length=100, unique=True)
