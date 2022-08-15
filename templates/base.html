@@ -12,12 +12,23 @@
 </head>
 
 <body class="">
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-12 col-xl-10 ">
+                    <div class="card shadow-lg rounded-5 border border-2 border-secondary p-3 border-opacity-50">
+                        <div class="card-body scroll">
+
+                            {% block content %}
 
 
-    {% block content %}
+                            {% endblock %}
 
-
-    {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
 
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 </body>

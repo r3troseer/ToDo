@@ -25,11 +25,11 @@ class Tag(models.Model):
 
 
 class Task(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField(max_length=500)
+    name = models.CharField(max_length=200, default="Task name")
+    description = models.TextField(max_length=500, default="task details")
     slug = AutoSlugField(populate_from="name", null=True)
-    due_date = models.DateField(("Date"), default=date.today)
-    due_time = models.TimeField(("Time"), default=time)
+    date = models.DateField(("Date"), default=date.today)
+    time = models.TimeField(("Time"), default=time)
     priority = models.ForeignKey(Priority, on_delete=models.SET_NULL, null=True)
     repeat = models.ForeignKey(Repeat, on_delete=models.SET_NULL, null=True)
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)

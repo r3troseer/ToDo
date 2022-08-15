@@ -1,8 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="text-center h2">add new task</div>
 <form method="POST">
     {% csrf_token %}
-    {{form.as_p}}
+    <div class="form-floating mb-3">
+        <!-- <input type="" class="form-control" id="floatingInput" placeholder="Full name"> -->
+        {{form.name}}
+        <label for="floatingInput">Name</label>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.description}}
+        <label for="floatingTextarea">Description</label>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.date}}
+        <label for="floatingInput">Due date</label>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.time}}
+        <label for="floatingInput">Due time</label>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.priority}}
+        <label for="floatingSelect">Priority</label>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.repeat}}
+        <label for="floatingSelect">Priority</label>
+    </div>
+    <div class="form-floating mb-3">
+        {{form.tag}}
+        <label for="floatingSelect">Priority</label>
+    </div>
+    <!-- {{form.as_div}} -->
     <button type="submit" class="save btn btn-secondary">Save</button>
 </form>
 {% endblock %}
