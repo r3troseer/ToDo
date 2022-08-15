@@ -65,8 +65,9 @@ def deleteTask(request, pk):
 
     if request.method == "POST":
         task.delete()
+        messages.success(request, "task deleted")
         return redirect("home")
-    messages.success(request, "task deleted")
+    
 
     context = {"task": task}
     return render(request, "delete.html", context)

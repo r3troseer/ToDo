@@ -9,8 +9,8 @@ class TaskForm(forms.ModelForm):
         fields = "__all__"
         widgets = { 'name' : forms.TextInput(attrs={'class':'form-control','id':'floatingInput','placeholder':'name',}),
                     'description': forms.Textarea(attrs={'class':'form-control','id':'floatingTextarea','placeholder':'name',}),
-                    'date': forms.DateInput(attrs={'class':'form-control','id':'floatingInput',}),
-                    'time': forms.TimeInput(attrs={'class':'form-control','id':'floatingInput',}),
+                    'date': forms.DateInput(attrs={'class':'form-control','id':'floatingInput date','type':'date',}),
+                    'time': forms.TimeInput(attrs={'class':'form-control','id':'floatingInput time','type':'time',}),
                     'priority': forms.Select(attrs={'class':'form-select','id':'floatingSelect',}),
                     'repeat': forms.Select(attrs={'class':'form-select','id':'floatingSelect',}),
                     'tag': forms.Select(attrs={'class':'form-select','id':'floatingSelect',}),

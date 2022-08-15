@@ -2,8 +2,8 @@
 {% block content %}
 <form method="post" action="">
     {% csrf_token %}
-    <p>Are you sure you want to delete "{{obj}}"?</p>
+    <p>Are you sure you want to delete "{{task.name}}"?</p>
     <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
-    <input type="submit" value="confirm"/>
+    <button class="btn btn-danger" type="submit">Sure</button>
 </form>
 {% endblock %}

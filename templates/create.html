@@ -12,13 +12,15 @@
         {{form.description}}
         <label for="floatingTextarea">Description</label>
     </div>
-    <div class="form-floating mb-3">
-        {{form.date}}
-        <label for="floatingInput">Due date</label>
-    </div>
-    <div class="form-floating mb-3">
-        {{form.time}}
-        <label for="floatingInput">Due time</label>
+    <div class="row">
+        <div class="form-floating mb-3 col-6">
+            {{form.date}}
+            <label for="floatingInput">Due date</label>
+        </div>
+        <div class="form-floating mb-3 col-6">
+            {{form.time}}
+            <label for="floatingInput">Due time</label>
+        </div>
     </div>
     <div class="form-floating mb-3">
         {{form.priority}}
@@ -26,13 +28,13 @@
     </div>
     <div class="form-floating mb-3">
         {{form.repeat}}
-        <label for="floatingSelect">Priority</label>
+        <label for="floatingSelect">Repeat</label>
     </div>
     <div class="form-floating mb-3">
         {{form.tag}}
-        <label for="floatingSelect">Priority</label>
+        <label for="floatingSelect">Tag</label>
     </div>
     <!-- {{form.as_div}} -->
-    <button type="submit" class="save btn btn-secondary">Save</button>
+    <button type="submit" class="save btn btn-primary">Save</button>
 </form>
 {% endblock %}
