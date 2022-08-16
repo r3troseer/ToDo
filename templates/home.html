@@ -5,7 +5,26 @@
 
 <div class="mx-auto text-center"><img src="{% static 'images/todo.png' %}" alt=""></div>
 <div class="grad text-center fw-semibold">To-do</div>
-<div class="text-end"><a href="{% url 'create' %}"><img src="{% static 'images/plus.png' %}" alt=""></a>
+<div class="row">
+    <div class="btn-group col-2">
+        <a href="{% url 'home' %}" type="button" class="btn btn-outline-primary">All Tasks</a>
+        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
+            <span class="visually-hidden">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><h6 class="dropdown-header">Tags</h6></li>
+            {% for tag in tags %}
+            <li><a class="dropdown-item" href="{% url 'home' %}?q={{tag.name}}">{{tag}}</a></li>
+            {% endfor %}
+            <li><hr class="dropdown-divider"></li>
+            <li><h6 class="dropdown-header">priority</h6></li>
+            {% for priority in priorities %}
+            <li><a class="dropdown-item" href="{% url 'home' %}?q={{priority.name}}">{{priority}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="text-end col"><a href="{% url 'create' %}"><img src="{% static 'images/plus.png' %}" alt=""></a>
+    </div>
 </div>
 <table class="table mb-0">
     <thead>
@@ -34,7 +53,7 @@
             <a href="{% url 'delete' task.id %}" title="Remove"><img src="{% static 'images/x.png' %}" alt=""></a>
         </td>
     </tr>
-    
+
     {%endfor%}
 </table>
 </div>

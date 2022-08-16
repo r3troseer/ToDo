@@ -1,7 +1,8 @@
 from django.contrib import messages
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Priority, Task
+from .models import Priority, Task, Tag
 from .forms import TaskForm
 
 # Create your views here.
@@ -10,7 +11,15 @@ from .forms import TaskForm
 # view function form the homepage where all tasks are viewed
 def home(request):
     tasks = Task.objects.all
-    context = {"tasks": tasks}
+    if request.GET.get("q") is not None:
+        q = request.GET.get("q")
+    else:
+        q = ""
+    tasks = Task.objects.filter(Q(tag__name__icontains=q)| 
+                                Q(priority__name__icontains=q))
+    tags = Tag.objects.all
+    priorities = Priority.objects.all
+    context = {"tasks": tasks, "tags": tags, "priorities": priorities}
     return render(request, "home.html", context)
 
 
@@ -50,7 +59,7 @@ def updateTask(request, pk):
         if form.is_valid():
             form.save()
             return redirect("home")
-        
+
     else:
         form = TaskForm(instance=task)
     # messages.success(request, "task created")
@@ -67,7 +76,6 @@ def deleteTask(request, pk):
         task.delete()
         messages.success(request, "task deleted")
         return redirect("home")
-    
 
     context = {"task": task}
     return render(request, "delete.html", context)
