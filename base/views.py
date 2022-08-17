@@ -5,8 +5,6 @@ from django.http import HttpResponse
 from .models import Priority, Task, Tag
 from .forms import TaskForm
 
-# Create your views here.
-
 
 # view function form the homepage where all tasks are viewed
 def home(request):
@@ -15,8 +13,9 @@ def home(request):
         q = request.GET.get("q")
     else:
         q = ""
-    tasks = Task.objects.filter(Q(tag__name__icontains=q)| 
-                                Q(priority__name__icontains=q))
+    tasks = Task.objects.filter(
+        Q(tag__name__icontains=q) | Q(priority__name__icontains=q)
+    )
     tags = Tag.objects.all
     priorities = Priority.objects.all
     context = {"tasks": tasks, "tags": tags, "priorities": priorities}
