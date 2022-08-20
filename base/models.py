@@ -2,16 +2,29 @@ from django.db import models
 from autoslug import AutoSlugField
 from datetime import date, time
 
+Priority_list = (
+    ("low priority", "low priority"),
+    ("Normal", "Normal"),
+    ("high priority", "high priority"),
+)
+
+Repeat_list = (
+    ("Repeat Once", "Repeat Once"),
+    ("Repeat Daily", "Repeat Daily"),
+    ("Repeat Weekly", "Repeat Weekly"),
+    ("Repeat Monthly", "Repeat Monthly"),
+)
+
 
 class Priority(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=20, choices=Priority_list, default="Normal")
 
     def __str__(self):
         return self.name
 
 
 class Repeat(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=20, choices=Repeat_list, default="Repeat Once")
 
     def __str__(self):
         return self.name
