@@ -1,3 +1,4 @@
+from decouple import config
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
@@ -18,10 +19,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-j7k#m(5wx#^nz*7hm-l5x*%4ose6b$*!05*mc*=cxe!&+n*#*z"
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -75,11 +76,11 @@ WSGI_APPLICATION = "ToDo.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "todo",
-        "USER": "root",
-        "PASSWORD": "3PCs&$7a",
-        "PORT": 3306,
-        "HOST": "127.0.0.1",
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USERNAME'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOSTNAME'),
+        'PORT': config('DB_PORT', cast=int),
     }
 }
 
